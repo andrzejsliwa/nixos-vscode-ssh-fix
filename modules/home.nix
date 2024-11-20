@@ -6,14 +6,18 @@ let
       };
       Service = serviceConfig;
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = ["default.target"];
       };
     };
   };
-in
-{
+in {
   imports = [
-    ./vscode.nix ({ name, description, serviceConfig, ... }: (moduleConfig name description serviceConfig))
-    ./phpstorm.nix ({ name, description, serviceConfig, ... }: (moduleConfig name description serviceConfig))
+    ./phpstorm.nix
+    ({
+      name,
+      description,
+      serviceConfig,
+      ...
+    }: (moduleConfig name description serviceConfig))
   ];
 }
